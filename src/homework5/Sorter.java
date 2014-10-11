@@ -57,7 +57,17 @@ public class Sorter
 	 */
 	public static void selectionSortCourses(Course[] courses)
 	{
-		//Nothing needs to be done here for the draft.
+		for (int i = 0; i < courses.length - 1; i++)
+		{
+			int smallestCourse = i;
+			for (int j = i + 1; j < courses.length; j++)
+			{
+				if (courses[j].size() < courses[smallestCourse].size()) { smallestCourse = j; }
+			}
+			Course temp = courses[i];
+			courses[i] = courses[smallestCourse];
+			courses[smallestCourse] = temp;
+		}
 	}
 	
 	/**
@@ -69,8 +79,51 @@ public class Sorter
 	 */
 	public static Student[] mergeSortStudents(Student[] students)
 	{
-		//Nothing needs to be done here for the draft.
-		return null;
+		if (students.length <= 1) { return students; }
+		Student[] half1 = new Student[students.length / 2];
+		Student[] half2 = new Student[students.length - half1.length];
+		for (int i = 0; i < half1.length; i++)
+		{
+			half1[i] = students[i];
+		}
+		for (int i = 0; i < half2.length; i++)
+		{
+			half2[i] = students[half1.length + i];
+		}
+		half1 = mergeSortStudents(half1);
+		half2 = mergeSortStudents(half2);
+		
+		//Merge
+		int posHalf1 = 0;
+		int posHalf2 = 0;
+		int posStudents = 0;
+		while (posHalf1 < half1.length && posHalf2 < half2.length)
+		{
+			if (half1[posHalf1].getLastName().compareTo(half2[posHalf2].getLastName()) < 0)
+			{
+				students[posStudents] = half1[posHalf1];
+				posHalf1++;
+			}
+			else
+			{
+				students[posStudents] = half2[posHalf2];
+				posHalf2++;
+			}
+			posStudents++;
+		}
+		while (posHalf1 < half1.length)
+		{
+			students[posStudents] = half1[posHalf1];
+			posStudents++;
+			posHalf1++;
+		}
+		while (posHalf2 < half2.length)
+		{
+			students[posStudents] = half2[posHalf2];
+			posStudents++;
+			posHalf2++;
+		}
+		return students;
 	}
 
 	/**
@@ -82,7 +135,27 @@ public class Sorter
 	 */
 	public static int binarySearchStudents(String lastName, Student[] students)
 	{
-		//Nothing needs to be done here for the draft.
-		return -1;
+		return binarySearchHelper(lastName, students, 0, students.length - 1);
+	}
+	
+	/**
+	 * Recursive helper method for binarySearchStudents.
+	 */
+	private static int binarySearchHelper(String lastName, Student[] students, int lowerRange, int upperRange)
+	{
+		if (lowerRange <= upperRange)
+		{
+			int middle = lowerRange + ((upperRange - lowerRange) / 2);
+			if (students[middle].getLastName().equals(lastName)) { return middle; }
+			else if (students[middle].getLastName().compareTo(lastName) < 0)
+			{
+				return binarySearchHelper(lastName, students, middle + 1, upperRange);
+			}
+			else
+			{
+				return binarySearchHelper(lastName, students, lowerRange, middle - 1);
+			}
+		}
+		else { return -1; }
 	}
 }
