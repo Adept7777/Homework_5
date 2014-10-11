@@ -10,35 +10,37 @@ public class Course
 	
 	public Course(String NewDepartmentCode, int NewNumber, String NewName)
 	{
-		departmentCode = NewDepartmentCode;
-		number = NewNumber;
-		name = NewName;
-		enrolledStudents = new ArrayList<Student>();
+		this.departmentCode = NewDepartmentCode;
+		this.number = NewNumber;
+		this.name = NewName;
+		this.enrolledStudents = new ArrayList<Student>();
 	}
 	
 	public String getDepartment()
 	{
-		return departmentCode;
+		return this.departmentCode;
 	}
 	
 	public void addStudent(Student newStudent)
 	{
-		enrolledStudents.add(newStudent);
+		this.enrolledStudents.add(newStudent);
 	}
 	public void addStudents(Student[] newStudents)
 	{
-		for( Student s : newStudents )
-			enrolledStudents.add(s);
+		for(Student s : newStudents)
+		{
+			this.enrolledStudents.add(s);
+		}
 	}
 	
 	public int size()
 	{
-		return enrolledStudents.size();
+		return this.enrolledStudents.size();
 	}
 	
 	@Override
 	public String toString()
 	{
-		return departmentCode + "-" + number + ": " + name;
+		return this.departmentCode + "-" + this.number + ": " + this.name;
 	}
 }

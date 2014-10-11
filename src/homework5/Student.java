@@ -9,26 +9,26 @@ public class Student
 	
 	public Student(String NewFirstName, String NewLastName, int NewId, String NewEmail)
 	{
-		firstName = NewFirstName;
-		lastName = NewLastName;
-		id = NewId;
-		email = NewEmail;
+		this.firstName = NewFirstName;
+		this.lastName = NewLastName;
+		this.id = NewId;
+		this.email = NewEmail;
 	}
 	
-	public String getFirstName(){ return firstName; }
-	public void setFirstName(String NewFirstName){ firstName = NewFirstName; }
+	public String getFirstName(){ return this.firstName; }
+	public void setFirstName(String NewFirstName){ this.firstName = NewFirstName; }
 
-	public String getLastName(){ return lastName; }
-	public void setLastName(String NewLastName){ lastName = NewLastName; }
+	public String getLastName(){ return this.lastName; }
+	public void setLastName(String NewLastName){ this.lastName = NewLastName; }
 
-	public int getId(){ return id; }
-	public void setId(int NewId){ id = NewId; }
+	public int getId(){ return this.id; }
+	public void setId(int NewId){ this.id = NewId; }
 
-	public String getEmail(){ return email; }
-	public void setEmail(String NewEmail){ email = NewEmail; }
+	public String getEmail(){ return this.email; }
+	public void setEmail(String NewEmail){ this.email = NewEmail; }
 
 	public String toString()
 	{
-		return firstName + " " + lastName;
+		return this.firstName + " " + this.lastName;
 	}
 }
