@@ -145,7 +145,7 @@ public class Sorter
 	{
 		if (lowerRange <= upperRange)
 		{
-			int middle = lowerRange + ((upperRange - lowerRange) / 2);
+			int middle = (upperRange + lowerRange) / 2;
 			if (students[middle].getLastName().equals(lastName)) { return middle; }
 			else if (students[middle].getLastName().compareTo(lastName) < 0)
 			{
